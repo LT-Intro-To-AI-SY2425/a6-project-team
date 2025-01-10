@@ -9,14 +9,17 @@ data = pd.read_csv("stuff.csv")
 x = data["observation_date"].values
 y = data["GFDEBTN"].values
 
+# use reshape to turn the x values into a 2D array
+x = x.reshape(-1, 1)
+
 # Create the model
-# model = LinearRegression().fit(x,y)
+model = LinearRegression().fit(x,y)
 # Find the coefficient, bias, and r squared values. 
 # Each should be a float and rounded to two decimal places. 
 
-# coef = round(float(model.coef_[0]), 2)
-# intercept = round(float(model.intercept_), 2)
-# r_squared = model.score(x, y)
+coef = round(float(model.coef_[0]), 2)
+intercept = round(float(model.intercept_), 2)
+r_squared = model.score(x, y)
 
 # Predict the the blood pressure of someone who is 43 years old.
 # Print out the prediction
@@ -51,7 +54,7 @@ plt.scatter(xtest, ytest, c="blue", label="Testing Data")
 plt.scatter(xtest, predict, c="red", label="Predictions")
 
 # Label the axes
-plt.title("debt over time")
+plt.title("Debt Over Time")
 plt.xlabel("Observation Date")
 plt.ylabel("Debt")
 
